@@ -41,7 +41,7 @@ class LoginController extends Controller
         if (!empty($validate->username)) { 
             if ($validate->level == 'admin') {
                 $request->session()->put('dimas', $validate->username);  
-                $request->session()->regenerate();   
+                // $request->session()->regenerate();   
                 return view('adminPage', [
                     'data' => $validate]);
             } elseif ($validate->level == 'tamu') {
