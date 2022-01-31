@@ -19,11 +19,15 @@ use App\Models\tipe_kamar;
 
 Route::post('/login', [LoginController::class, 'takeAll']);
 Route::get('/kamar', [DataKamarController::class, 'takeAll']);
+Route::get('/kamar/ubah/{$id}', DataKamarController::class);
 
 Route::get('/', function () {
     return view('login');
 });
 
+Route::get('/kamar/ubah/{id}', function ($id) {
+    return 'User '.$id;
+});
 
 Route::get('/DataKamar', function () {
  

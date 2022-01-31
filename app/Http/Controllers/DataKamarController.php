@@ -8,11 +8,25 @@ use Illuminate\Http\Request;
 
 class DataKamarController extends Controller
 {
-    public function takeAll() {
+    public function takeAll(Request $request) 
+    {
         $data = tipe_kamar::join('tipe', 'tipe_kamars.id_tipe', '=', 'tipe.id_tipe')
         ->get();
-        return view('datakamar', [
+        $request->session()->put('dataKamar', $data[0]);
+        $value = $request->session()->get('dataKamar');
+        // dd(session());
+        return view('admin/datakamar', [
             'data' => $data
         ]);
+    }
+
+    public function ubah(Id $id) 
+    {
+        
+        $tipe_kamar = tipe_kamar::join('tipe', 'tipe_kamars.id_tipe', '=', 'tipe.id_tipe')
+        ->where('id_kamar', $id)
+        ->get();
+        return view('admin/tambah', [
+            'tipe_kamar'=> $tipe_kamar]);
     }
 }

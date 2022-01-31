@@ -42,17 +42,17 @@ class LoginController extends Controller
             if ($validate->level == 'admin') {
                 $request->session()->put('dimas', $validate->username);  
                 // $request->session()->regenerate();   
-                return view('adminPage', [
+                return view('admin/adminPage', [
                     'data' => $validate]);
             } elseif ($validate->level == 'tamu') {
                 $request->session()->put('dimas', $validate->username);  
                 $request->session()->regenerate();
-                return view('userPage', [
+                return view('user/userPage', [
                     'data' => $validate]);
             } elseif ($validate->level == 'resepsionis') {
                 $request->session()->put('dimas', $validate->username);  
                 $request->session()->regenerate();
-                return view('resepsionisPage', [
+                return view('resepsionis/resepsionisPage', [
                     'data' => $validate]);
             }
             

@@ -120,19 +120,12 @@
                         
                         <td>{{ $d->nama_tipe }}</td>
                         <td>{{ $d->jml_kamar }}</td>
-                        <td><a href="#" class="btn btn-sm btn-warning">Ubah</a>
+                        <td><a href="{{ url('/kamar/ubah', $d->id_kamar); }}" class="btn btn-sm btn-warning">Ubah</a>
                         <a href="#" class="btn btn-sm btn-success">Lihat</a></td>
                         <!-- <td><span class="badge badge-warning">Shipping</span></td> -->
                       </tr>
                                             
                     @endforeach
-                      <!-- <tr>
-                        <td><a href="#">RA5324</a></td>
-                        <td>Jaenab Bajigur</td>
-                        <td><a href="#" class="btn btn-sm btn-warning">Ubah</a>
-                        <a href="#" class="btn btn-sm btn-success">Lihat</a></td>
-                        <td><span class="badge badge-warning">Shipping</span></td>
-                      </tr> -->
 
                     </tbody>
                   </table>

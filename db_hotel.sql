@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 27, 2022 at 04:29 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.31
+-- Generation Time: Jan 31, 2022 at 10:54 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,15 +51,24 @@ CREATE TABLE `fasilitas_kamar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `login`
+-- Table structure for table `logins`
 --
 
-CREATE TABLE `login` (
+CREATE TABLE `logins` (
   `id_login` int(11) NOT NULL,
   `username` varchar(35) NOT NULL,
   `password` varchar(35) NOT NULL,
   `level` enum('admin','resepsionis','tamu') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `logins`
+--
+
+INSERT INTO `logins` (`id_login`, `username`, `password`, `level`) VALUES
+(1, 'admin', 'admin@admin', 'admin'),
+(2, 'resepsionis', 'resepsionis123', 'resepsionis'),
+(3, 'dimas', 'dimas123', 'tamu');
 
 -- --------------------------------------------------------
 
@@ -87,21 +96,37 @@ CREATE TABLE `pemesanan` (
 
 CREATE TABLE `tipe` (
   `id_tipe` int(11) NOT NULL,
-  `nama_tipe` int(50) NOT NULL
+  `nama_tipe` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tipe`
+--
+
+INSERT INTO `tipe` (`id_tipe`, `nama_tipe`) VALUES
+(1, 'Deluxe'),
+(2, 'Superior');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipe_kamar`
+-- Table structure for table `tipe_kamars`
 --
 
-CREATE TABLE `tipe_kamar` (
+CREATE TABLE `tipe_kamars` (
   `id_kamar` int(11) NOT NULL,
   `id_tipe` int(11) NOT NULL,
   `jml_kamar` int(11) NOT NULL,
   `gambar_tipekamar` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tipe_kamars`
+--
+
+INSERT INTO `tipe_kamars` (`id_kamar`, `id_tipe`, `jml_kamar`, `gambar_tipekamar`) VALUES
+(1, 1, 4, 'kamar1.png'),
+(2, 2, 2, 'kamar2.png');
 
 --
 -- Indexes for dumped tables
@@ -121,9 +146,9 @@ ALTER TABLE `fasilitas_kamar`
   ADD KEY `id_kamar` (`id_kamar`);
 
 --
--- Indexes for table `login`
+-- Indexes for table `logins`
 --
-ALTER TABLE `login`
+ALTER TABLE `logins`
   ADD PRIMARY KEY (`id_login`);
 
 --
@@ -140,9 +165,9 @@ ALTER TABLE `tipe`
   ADD PRIMARY KEY (`id_tipe`);
 
 --
--- Indexes for table `tipe_kamar`
+-- Indexes for table `tipe_kamars`
 --
-ALTER TABLE `tipe_kamar`
+ALTER TABLE `tipe_kamars`
   ADD PRIMARY KEY (`id_kamar`),
   ADD KEY `id_tipe` (`id_tipe`);
 
@@ -163,10 +188,10 @@ ALTER TABLE `fasilitas_kamar`
   MODIFY `id_faskamar` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `login`
+-- AUTO_INCREMENT for table `logins`
 --
-ALTER TABLE `login`
-  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `logins`
+  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `pemesanan`
@@ -178,13 +203,13 @@ ALTER TABLE `pemesanan`
 -- AUTO_INCREMENT for table `tipe`
 --
 ALTER TABLE `tipe`
-  MODIFY `id_tipe` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `tipe_kamar`
+-- AUTO_INCREMENT for table `tipe_kamars`
 --
-ALTER TABLE `tipe_kamar`
-  MODIFY `id_kamar` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tipe_kamars`
+  MODIFY `id_kamar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -194,19 +219,19 @@ ALTER TABLE `tipe_kamar`
 -- Constraints for table `fasilitas_kamar`
 --
 ALTER TABLE `fasilitas_kamar`
-  ADD CONSTRAINT `fasilitas_kamar_ibfk_1` FOREIGN KEY (`id_kamar`) REFERENCES `tipe_kamar` (`id_kamar`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fasilitas_kamar_ibfk_1` FOREIGN KEY (`id_kamar`) REFERENCES `tipe_kamars` (`id_kamar`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_kamar`) REFERENCES `tipe_kamar` (`id_kamar`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_kamar`) REFERENCES `tipe_kamars` (`id_kamar`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tipe_kamar`
+-- Constraints for table `tipe_kamars`
 --
-ALTER TABLE `tipe_kamar`
-  ADD CONSTRAINT `tipe_kamar_ibfk_1` FOREIGN KEY (`id_tipe`) REFERENCES `tipe` (`id_tipe`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tipe_kamars`
+  ADD CONSTRAINT `tipe_kamars_ibfk_1` FOREIGN KEY (`id_tipe`) REFERENCES `tipe` (`id_tipe`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
