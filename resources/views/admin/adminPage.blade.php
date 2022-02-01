@@ -26,7 +26,7 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="{{ url('/login'); }}">
+        <a class="nav-link" href="{{ url('/login/dashboard') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -34,6 +34,7 @@
       <div class="sidebar-heading">
         Features
       </div>
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
@@ -43,7 +44,7 @@
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tables</h6>
-            <a class="collapse-item" href="{{ url('/kamar') }}">Data Kamar</a>
+            <a class="collapse-item" href="{{ url('/kamar', $data[0]->id_login) }}">Data Kamar</a>
             <a class="collapse-item" href="{{ url('/DatFasKam') }}">Data Fasilitas Kamar</a>
             <a class="collapse-item" href="{{ url('/DatFasHotel') }}">Data Fasilitas Umum Hotel</a>
           </div>
@@ -67,7 +68,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <img class="img-profile rounded-circle" src="{{ url('RuangAdmin') }}/img/boy.png" style="max-width: 60px">
-                <span class="ml-2 d-none d-lg-inline text-white small">{{ $data->username }}</span>
+                <span class="ml-2 d-none d-lg-inline text-white small">{{ $data[0]->username }}</span>
               </a>
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">

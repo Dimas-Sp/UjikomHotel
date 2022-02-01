@@ -18,25 +18,13 @@ use App\Models\tipe_kamar;
 */
 
 Route::post('/login', [LoginController::class, 'takeAll']);
-Route::get('/kamar', [DataKamarController::class, 'takeAll']);
-Route::get('/kamar/ubah/{$id}', DataKamarController::class);
+Route::get('/login/dashboard', [LoginController::class, 'dashboard']);
+Route::get('/kamar/{id}', [DataKamarController::class, 'takeAll']);
+Route::get('/kamar/ubah/{id}', [DataKamarController::class, 'ubah']);
+Route::post('/kamar/update', [DataKamarController::class, 'update']);
 
 Route::get('/', function () {
     return view('login');
-});
-
-Route::get('/kamar/ubah/{id}', function ($id) {
-    return 'User '.$id;
-});
-
-Route::get('/DataKamar', function () {
- 
-        $data = tipe_kamar::join('tipe', 'tipe_kamars.id_tipe', '=', 'tipe.id_tipe')
-        ->get();
-        return view('datakamar', [
-            'data' => $data
-        ]);
-    
 });
 
 Route::get('/DatFasKam', function () {

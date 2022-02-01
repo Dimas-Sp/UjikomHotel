@@ -112,6 +112,7 @@
                       <tr>
                         <th>Tipe Kamar</th>
                         <th>Jumlah Kamar</th>
+                        <!-- <th>Foto Kamar</th> -->
                         <th>Aksi</th> 
                       </tr>
                     </thead>
@@ -120,6 +121,9 @@
                         
                         <td>{{ $d->nama_tipe }}</td>
                         <td>{{ $d->jml_kamar }}</td>
+                        <!-- <td>
+                          <img src="{{ asset('img') }}/{{ $d->gambar_tipekamar }}" alt="" width="100px">
+                        </td> -->
                         <td><a href="{{ url('/kamar/ubah', $d->id_kamar); }}" class="btn btn-sm btn-warning">Ubah</a>
                         <a href="#" class="btn btn-sm btn-success">Lihat</a></td>
                         <!-- <td><span class="badge badge-warning">Shipping</span></td> -->

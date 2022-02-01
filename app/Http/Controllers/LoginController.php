@@ -35,12 +35,13 @@ class LoginController extends Controller
 
         $validate = login::where('username', $username)
                         ->where('password', $password)
-                        ->first();
-                        
-                        
-        if (!empty($validate->username)) { 
-            if ($validate->level == 'admin') {
-                $request->session()->put('dimas', $validate->username);  
+                        ->get();
+                        // dd($validate);  
+
+
+        if (!empty($validate[0]->username)) { 
+            if ($validate[0]->level == 'admin') {
+                $request->session()->put('dimas', $validate[0]->username);  
                 // $request->session()->regenerate();   
                 return view('admin/adminPage', [
                     'data' => $validate]);
@@ -63,6 +64,15 @@ class LoginController extends Controller
             return back()->with('loginError', 'LoginFailed!');
         }            
                     
+    }
+
+    public function dashboard(Request $request) 
+    {
+        $validate = login::all();
+        $request->session()->put('dimas', $validate[0]->username);  
+                // $request->session()->regenerate();   
+                return view('admin/adminPage', [
+                    'data' => $validate]);
     }
 
     public function getLogout(Request $request)

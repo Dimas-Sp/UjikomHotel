@@ -20,7 +20,7 @@ class DataKamarController extends Controller
         ]);
     }
 
-    public function ubah(Id $id) 
+    public function ubah($id) 
     {
         
         $tipe_kamar = tipe_kamar::join('tipe', 'tipe_kamars.id_tipe', '=', 'tipe.id_tipe')
@@ -28,5 +28,14 @@ class DataKamarController extends Controller
         ->get();
         return view('admin/tambah', [
             'tipe_kamar'=> $tipe_kamar]);
+    }
+
+    public function update (Request $request) 
+    {
+        $simpan = tipe_kamar::where('id_kamar', $request->id_kamar)->update([
+                  'id_tipe' => $request->id_tipe,
+                  'jml_kamar' => $request->jml_kamar
+                  ]);
+                return redirect('/kamar');
     }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2022 at 10:54 AM
+-- Generation Time: Feb 01, 2022 at 09:03 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -117,16 +117,17 @@ CREATE TABLE `tipe_kamars` (
   `id_kamar` int(11) NOT NULL,
   `id_tipe` int(11) NOT NULL,
   `jml_kamar` int(11) NOT NULL,
-  `gambar_tipekamar` text NOT NULL
+  `gambar_tipekamar` text NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tipe_kamars`
 --
 
-INSERT INTO `tipe_kamars` (`id_kamar`, `id_tipe`, `jml_kamar`, `gambar_tipekamar`) VALUES
-(1, 1, 4, 'kamar1.png'),
-(2, 2, 2, 'kamar2.png');
+INSERT INTO `tipe_kamars` (`id_kamar`, `id_tipe`, `jml_kamar`, `gambar_tipekamar`, `updated_at`) VALUES
+(1, 1, 5, 'kamar1.png', '2022-01-31 23:56:47'),
+(2, 2, 2, 'kamar2.png', '2022-01-31 23:43:39');
 
 --
 -- Indexes for dumped tables
