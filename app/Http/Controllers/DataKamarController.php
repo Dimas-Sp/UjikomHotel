@@ -26,7 +26,7 @@ class DataKamarController extends Controller
         $tipe_kamar = tipe_kamar::join('tipe', 'tipe_kamars.id_tipe', '=', 'tipe.id_tipe')
         ->where('id_kamar', $id)
         ->get();
-        return view('admin/tambah', [
+        return view('admin/ubah', [
             'tipe_kamar'=> $tipe_kamar]);
     }
 
@@ -36,6 +36,23 @@ class DataKamarController extends Controller
                   'id_tipe' => $request->id_tipe,
                   'jml_kamar' => $request->jml_kamar
                   ]);
-                return redirect('/kamar');
+                return redirect('/kamar/{$id}');
     }
+
+    public function tambah($id) 
+    {
+        
+        $tipe_kamar = tipe_kamar::join('tipe', 'tipe_kamars.id_tipe', '=', 'tipe.id_tipe')
+        ->where('id_kamar', $id)
+        ->get();
+        return view('admin/tambah', [
+            'tipe_kamar'=> $tipe_kamar]);
+    }
+    
+    // public function lihat($id)
+    // {
+    //     // $hapus = tipe_kamar::where('id_kamar', $id)->delete();
+    //     return view('kamar/{}')
+    // }
+    
 }

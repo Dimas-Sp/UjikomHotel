@@ -1,3 +1,20 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+
+	
+
+
+
+</body>
+</html> -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +43,7 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="{{ url('/login/dashboard'); }}">
+        <a class="nav-link" href="{{ url('/login'); }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -43,7 +60,7 @@
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tables</h6>
-            <a class="collapse-item" href="...">Data Kamar</a>
+            <a class="collapse-item" href="{{ url('/DataKamar') }}">Data Kamar</a>
             <a class="collapse-item" href="{{ url('/DatFasKam') }}">Data Fasilitas Kamar</a>
             <a class="collapse-item" href="{{ url('/DatFasHotel') }}">Data Fasilitas Umum Hotel</a>
           </div>
@@ -103,45 +120,27 @@
             </ol>
           </div>
 
-          <div class="row ml-3 mr-3">
+          <div class="row ml-3 mr-3" style="margin-bottom:483px; margin-left:50px; margin-right:550px;">
           <!-- Simple Tables -->
-          <div class="card" style="width: 1650px;">
-                <div class="table-responsive">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th>Tipe Kamar</th>
-                        <th>Jumlah Kamar</th>
-                        <!-- <th>Foto Kamar</th> -->
-                        <th>Aksi</th> 
-                      </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($data as $d) 
-                      <tr>
-                        <td>{{ $d->nama_tipe }}</td>
-                        <td>{{ $d->jml_kamar }}</td>
-                        <!-- <td>
-                          <img src="{{ asset('img') }}/{{ $d->gambar_tipekamar }}" alt="" width="100px">
-                        </td> -->
-                        <td>
-                          <a href="{{ url('/kamar/ubah', $d->id_kamar); }}" class="btn btn-sm btn-warning">Ubah</a>
-                          <a href="{{ url('/kamar/lihat', $d->id_kamar) }}" class="btn btn-sm btn-success">Lihat</a>
-                        </td>
-                        <!-- <td><span class="badge badge-warning">Shipping</span></td> -->
-                      </tr>
-                                            
-                    @endforeach
-
-                    </tbody>
-                  </table>
-                </div>
-                <div class="card-footer"></div>
-              </div>
-            </div>
-              <div class="d-sm-flex flex-row-reverse">
-              <a href="{{ url('/kamar/tambah', $d->id_kamar); }}" class="btn btn btn-primary mr-3 mt-3">+</a>
-              </div>
+          @foreach($tipe_kamar as $t)
+			<form action="{{ url('kamar/update'); }}" method="post">
+				{{ csrf_field() }}
+				<input type="hidden" name="id_kamar" value="{{ $t->id_kamar }}"> <br/>
+				<div class="form-group">
+					<label for="exampleFormControlSelect1">Ubah Tipe..</label>
+					<select class="form-control" name="id_tipe" id="exampleFormControlSelect1">
+						<option value="{{ $t->id_tipe }}">{{ $t->nama_tipe }}</option>
+						<option value="1">Deluxe</option>
+						<option value="2">Superior</option>
+					</select>
+				</div>
+				<div class="mb-3">
+					<label for="exampleInputJumlah1" class="form-label">Jumlah Kamar</label>
+					<input type="text" class="form-control" id="exampleInputPassword1" name="jml_kamar" value="{{ $t->jml_kamar }}">
+				</div>
+				<button type="submit" class="btn btn-warning">Simpan Data</button>
+			</form>
+			@endforeach
           </div>
             
           <!-- Modal Logout -->

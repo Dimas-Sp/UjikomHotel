@@ -127,16 +127,16 @@
 				{{ csrf_field() }}
 				<input type="hidden" name="id_kamar" value="{{ $t->id_kamar }}"> <br/>
 				<div class="form-group">
-					<label for="exampleFormControlSelect1">Ubah Tipe..</label>
-					<select class="form-control" name="id_tipe" id="exampleFormControlSelect1">
-						<option value="{{ $t->nama_tipe }}">{{ $t->nama_tipe }}</option>
-						<option value="1">Deluxe</option>
-						<option value="2">Superior</option>
+					<label for="exampleFormControlSelect1">Tambah Tipe Kamar</label>
+					<select class="form-control" name="id_tipe" id="exampleFormControlSelect1" required="required">
+						<option>{{ $t->nama_tipe }}</option>
+						<option>Deluxe</option>
+						<option>Superior</option>
 					</select>
 				</div>
 				<div class="mb-3">
 					<label for="exampleInputJumlah1" class="form-label">Jumlah Kamar</label>
-					<input type="text" class="form-control" id="exampleInputPassword1" name="jml_kamar" value="{{ $t->jml_kamar }}">
+					<input type="text" class="form-control" id="exampleInputPassword1" name="jml_kamar" required="required">
 				</div>
 				<button type="submit" class="btn btn-warning">Simpan Data</button>
 			</form>

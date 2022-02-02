@@ -18,10 +18,22 @@ use App\Models\tipe_kamar;
 */
 
 Route::post('/login', [LoginController::class, 'takeAll']);
+
 Route::get('/login/dashboard', [LoginController::class, 'dashboard']);
+
 Route::get('/kamar/{id}', [DataKamarController::class, 'takeAll']);
+
 Route::get('/kamar/ubah/{id}', [DataKamarController::class, 'ubah']);
+
 Route::post('/kamar/update', [DataKamarController::class, 'update']);
+
+Route::get('/kamar/lihat/{id}', [DataKamarController::class, 'lihat']);
+
+Route::get('/kamar/tambah/{id}', [DataKamarController::class, 'tambah']);
+
+Route::post('/kamar/tambah', [DataKamarController::class, 'update']);
+
+
 
 Route::get('/', function () {
     return view('login');
