@@ -60,7 +60,7 @@
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tables</h6>
-            <a class="collapse-item" href="{{ url('/DataKamar') }}">Data Kamar</a>
+            <a class="collapse-item" href="{{ url('/kamar/1') }}">Data Kamar</a>
             <a class="collapse-item" href="{{ url('/DatFasKam') }}">Data Fasilitas Kamar</a>
             <a class="collapse-item" href="{{ url('/DatFasHotel') }}">Data Fasilitas Umum Hotel</a>
           </div>
@@ -122,25 +122,25 @@
 
           <div class="row ml-3 mr-3" style="margin-bottom:483px; margin-left:50px; margin-right:550px;">
           <!-- Simple Tables -->
-          @foreach($tipe_kamar as $t)
-			<form action="{{ url('kamar/update'); }}" method="post">
-				{{ csrf_field() }}
-				<input type="hidden" name="id_kamar" value="{{ $t->id_kamar }}"> <br/>
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">Tambah Tipe Kamar</label>
-					<select class="form-control" name="id_tipe" id="exampleFormControlSelect1" required="required">
-						<option>{{ $t->nama_tipe }}</option>
-						<option>Deluxe</option>
-						<option>Superior</option>
-					</select>
-				</div>
-				<div class="mb-3">
-					<label for="exampleInputJumlah1" class="form-label">Jumlah Kamar</label>
-					<input type="text" class="form-control" id="exampleInputPassword1" name="jml_kamar" required="required">
-				</div>
-				<button type="submit" class="btn btn-warning">Simpan Data</button>
-			</form>
-			@endforeach
+          <form action="{{ url('kamar/store'); }}" method="post">
+            {{ csrf_field() }}
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Tambah Tipe Kamar</label>
+              <select class="form-control" name="id_tipe" id="exampleFormControlSelect1" required="required">
+                <option value="1">Deluxe</option>
+                <option value="2">Superior</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="InputJumlahKamar" class="form-label">Jumlah Kamar</label>
+              <input type="text" class="form-control" id="InputJumlahKamar" name="jml_kamar" required="required">
+            </div>
+            <div class="mb-3">
+              <label for="InputGambar" class="form-label">Gambar</label>
+              <input type="text" class="form-control" id="InputGambar" name="gambar_tipekamar" required="required">
+            </div>
+            <button type="submit" class="btn btn-warning">Simpan Data</button>
+          </form>
           </div>
             
           <!-- Modal Logout -->

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DataKamarController;
+use App\Http\Controllers\DatFasKamarController;
 use App\Models\tipe_kamar;
 
 
@@ -29,9 +30,9 @@ Route::post('/kamar/update', [DataKamarController::class, 'update']);
 
 Route::get('/kamar/lihat/{id}', [DataKamarController::class, 'lihat']);
 
-Route::get('/kamar/tambah/{id}', [DataKamarController::class, 'tambah']);
+Route::get('/kamar/{id}/tambahData', [DataKamarController::class, 'tambah']);
 
-Route::post('/kamar/tambah', [DataKamarController::class, 'update']);
+Route::post('/kamar/store', [DataKamarController::class, 'store']);
 
 
 
@@ -39,9 +40,7 @@ Route::get('/', function () {
     return view('login');
 });
 
-Route::get('/DatFasKam', function () {
-    return view('datafaskamar');
-});
+Route::get('DatFasKamar', [DatFasKamarController::class, 'index']);
 
 Route::get('/DatFasHotel', function () {
     return view('datafashotel');

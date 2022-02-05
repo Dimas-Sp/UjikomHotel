@@ -45,7 +45,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Tables</h6>
             <a class="collapse-item" href="{{ url('/kamar', $data[0]->id_login) }}">Data Kamar</a>
-            <a class="collapse-item" href="{{ url('/DatFasKam') }}">Data Fasilitas Kamar</a>
+            <a class="collapse-item" href="{{ url('/DatFasKamar') }}">Data Fasilitas Kamar</a>
             <a class="collapse-item" href="{{ url('/DatFasHotel') }}">Data Fasilitas Umum Hotel</a>
           </div>
         </div>

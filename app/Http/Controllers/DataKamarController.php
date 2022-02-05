@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class DataKamarController extends Controller
 {
+    //Function Untuk mengambil semua Data
     public function takeAll(Request $request) 
     {
         $data = tipe_kamar::join('tipe', 'tipe_kamars.id_tipe', '=', 'tipe.id_tipe')
@@ -20,6 +21,8 @@ class DataKamarController extends Controller
         ]);
     }
 
+
+    //function Untuk mengupdate data
     public function ubah($id) 
     {
         
@@ -29,7 +32,6 @@ class DataKamarController extends Controller
         return view('admin/ubah', [
             'tipe_kamar'=> $tipe_kamar]);
     }
-
     public function update (Request $request) 
     {
         $simpan = tipe_kamar::where('id_kamar', $request->id_kamar)->update([
@@ -39,20 +41,31 @@ class DataKamarController extends Controller
                 return redirect('/kamar/{$id}');
     }
 
-    public function tambah($id) 
+
+    //Function Untuk Menambahkan Data
+    public function tambah() 
     {
+        return view('admin/tambahData');
         
-        $tipe_kamar = tipe_kamar::join('tipe', 'tipe_kamars.id_tipe', '=', 'tipe.id_tipe')
-        ->where('id_kamar', $id)
-        ->get();
-        return view('admin/tambah', [
-            'tipe_kamar'=> $tipe_kamar]);
     }
     
+    public function store(Request $request) 
+    {
+        // dd($_POST['gambar_tipekamar']);
+        tipe_kamar::insert([
+            'id_tipe' => $request->id_tipe,
+            'jml_kamar' => $request->jml_kamar,
+            'gambar_tipekamar' => $request->gambar_tipekamar
+            
+        ]);
+        return redirect('/kamar/{$id}');
+    }
+
+
+    //function untuk melihat keterangan data dan menghapus data
     // public function lihat($id)
     // {
-    //     // $hapus = tipe_kamar::where('id_kamar', $id)->delete();
-    //     return view('kamar/{}')
+    //    return view('/admin/lihatDetail');
     // }
     
 }
